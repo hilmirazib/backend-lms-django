@@ -1,0 +1,339 @@
+LMS Webapp using React and Django
+SECTION 1 - BACKEND
+
+Create new django project
+Install latest python version or 3.11.5
+Create New Folder called Django React LMS
+In the folder, create two new folders called, backend and frontend
+CD into backend and create a virtual environment - python -m venv venv
+Activate the virtual environment - venv\Scripts\activate or venv\bin\activate or source venv/bin/activate
+Install Django - python -m pip install Django==4.2
+Create a Django project in current folder - django-admin startproject backend .
+Create a new requirements.txt file in the backend root dir and added the required packages
+Install Required Packages from requirements.txt  - pip install -r requirements.txt
+Create new app userauths, core, userauths, api- python manage.py startapp app_name 
+Apps are: core, api, userauths.
+Create a .gitignore file and add the files to be ignored 
+Install Apps in settings.py
+Run Python Manage.py Runsever
+
+Setup Django Admin
+Install Django Jazzmin
+Add Jazzmin to settings.py INSTALLED apps Section
+Configure Jazzmin Settings
+Configure Jazzmin UI Tweaks
+Create Superuser
+Migrate Database
+Login to the admin section.
+
+Configure Templates and Static Files
+Configure template configuration in TEMPLATES Section settings.py
+Create a new folder under Templates.
+Configure the static and media files in settings.py and urls.py
+Create media and static folders.
+
+Create Django Custom User Model and Profile
+Create Custom user and profile models in core.models
+Register Model in Admin and Add filters, Displays, etc.
+Run Migration Commands
+Test Model in Django Admin Panel
+
+Custom User Model and Profile Serializer
+Create Custom user and profile models in core.models
+Register Model in Admin and Add filters, Displays, etc.
+Run Migration Commands
+
+Discuss About Django JWT Authentication
+Discuss JWT Authentication
+Setup Settings.py jwt
+
+Setup Login Serializer
+Create MyTokenObtainPairSerailizer Class to generate and refresh token
+
+Setup Registration Serializer
+Create Registration Serializer Class to register users.
+
+Token Obtain Pair and Registrations View
+Create token and registration views
+Register Views in URLS.py
+Test In Browser
+
+Password Reset (API)
+Create API to fetch user and send password email
+Configure API in url
+
+Password Reset (Client)
+Create component to send email to server
+Create onChange and onSubmit handlers
+
+Create Password (API)
+Create API to fetch password and related auth data 
+Verify is user exists and token is valid
+Reset password
+Configure API in url
+
+
+Create Password (Client)
+Create component to create new password
+Formdata and send it to bak
+
+Generate Robust Documentation using DRF-Yasg
+Generate docs using drf-yasg
+pip install drf-yasg
+Add drf_yasg to installed apps
+In main urls.py import the snippets for creating the yasg
+
+Setting Up React.JS - Login, Register and Logout
+Make sure you have node.js installed
+Yarn is recommended as package manager. You can simply type npm install --global yarn to install yarn
+Any IDE, VS Code recommended
+Git version control (optional but recommended)
+CD into frontend folder
+Create new project using vite.js
+
+	Why Vite and Not Create React App?
+Using Vite to set up a React project is often a better choice than Create React App (CRA) for a simpler reason – speed and efficiency. Vite's development server is notably faster, meaning you spend less time waiting for your changes to take effect. It also creates smaller, more efficient code bundles, which results in faster page loads for your website visitors. 
+
+Vite's configuration is straightforward, and it doesn't include unnecessary code for older browsers, which can make your site faster and more modern. I will also say that, Vite is designed to work well with both Vue and React, offering you a fast and versatile tool for building web applications. Finally, it's about choosing a tool that makes your development process faster and smoother that we are aiming for in this course. So let’s give Vite.js a spin.
+
+
+npm install --global yarn
+yarn create vite . --template react
+yarn
+yarn add axios react-router-dom@6.10.0 zustand
+yarn add -D simple-zustand-devtools
+yarn dev
+
+
+Let’s Continue:
+Imagine you and your friends are tackling a group project. You need to keep track of things like progress, tasks, and deadlines. How you share this information can make or break the project's flow.
+
+The Shared Notebook Approach (React Context API):
+Picture a big, communal notebook where everyone scribbles down updates. It's simple to set up, anyone can jump in and add their thoughts, but things can get messy fast. Multiple edits simultaneously? Chaos! This approach works okay for small projects with basic data needs, but imagine trying to decipher scribbles and conflicting updates once things get complex.
+
+The Personal Whiteboard Approach (Zustand):
+Now, imagine everyone has their own whiteboard. You organize your own thoughts, tasks, and progress. Need to share something? Point to your board, have a quick chat, and everyone's on the same page. It's clearer, more organized, and each person has control over their own "data kingdom." This makes things much smoother for larger projects with intricate details and multiple contributors.
+
+
+
+Zustand vs. React Context API: Two Tools for Different Jobs:
+Think of React Context API as your shared notebook. It's easy to use, gets the job done for simple projects, but can get cluttered as things grow. Zustand, on the other hand, is like your personal whiteboard. It offers more structure, organization, and control, making it ideal for complex projects with lots of data and contributors.
+
+
+So, when do you grab the whiteboard (Zustand)?
+When your project's data gets complicated and needs better organization.
+When you want clear tracking of individual contributions and updates.
+When performance matters and you need things to run smoothly.
+When your project scales and you need a state management solution that can handle the growth.
+
+In essence, Zustand provides a more robust and scalable way to manage state in complex React applications, while React Context API remains a solid choice for sharing basic data in simpler projects. It's all about picking the right tool for the job, keeping your project organized and your team in sync!
+
+1. Creating Store using Zustand: 
+Create a folder in src named store & create a file named auth.js inside it. This store keeps track of user info, such as whether they're logged in   or not. We will create a function to store user Id and Username for future purposes, since we will be making good use of the user Id.
+
+Now, let's create utility functions that we will require for authentication purpose.
+We will create utils folder inside src folder.
+We will create 4 files, auth.js axios.js constants.js useAxios.js
+
+Keeping Your Keys Safe: Managing Access Tokens with useAxios.js
+Imagine you have a fancy apartment building with a short-lived access key. It lets you in your unit for a while, but once it expires, you're locked out! That's what happens with access tokens in web applications. They grant access to private areas, but they expire quickly.
+
+The Challenge: No More Lockouts
+So, how do we avoid getting locked out after the token expires? We need a smart assistant who checks our key before opening the door (sending a request to the server). If the key is expired, the assistant grabs a new one using a special "refresh token". Once we have a fresh key, we can confidently enter our secure apartment (make API requests to private routes).
+
+The Solution: useAxios.js will now come to the Rescue
+This is where useAxios.js comes in. It's like a library of helpful tools for dealing with API requests. One of its coolest features is interceptors. They act like security guards who intercept outgoing requests before they reach the server. 
+
+Here's how we can use them:
+Interceptor on Patrol: We set up an interceptor with useAxios.js to always check our access token before sending a request. Think of it as the guard checking your key.
+Expired Key? No Problem: If the key is expired, the interceptor doesn't just let you get locked out. It uses the refresh token to grab a new key! It's like having a backup key hidden somewhere.
+Fresh Key, Open We’re In!: Now With the new key in hand, the interceptor updates your application's state (like letting everyone know you have a new key) and sends the request along its merry way. Now you can access your private apartment (API route) without any issues.
+
+Bonus: A Helping Hand with React Custom Hooks
+To make things even smoother, we can use a special helper called a React Custom Hook. It's like having a personal assistant who manages all the key checking and refreshing behind the scenes. You just tell it where to get the keys and what to do with them, and it takes care of the rest.
+So, with useAxios.js and custom hooks, you can say goodbye to lockouts and enjoy seamless access to your secure application areas!
+
+2. Creating UTILS files
+Create a new folder in src called utils
+Create 4 new files in that utils folder called (auth.js, axios.js, constants.js & useAxios.js)
+
+
+
+
+3. Private Routes In React.Js
+Create one new folder in the src folder caled layouts
+In layouts folder create > MainWrapper.js and PrivateRoutes.js
+
+Let Talk about PrivateRoutes and Mainwrappers
+Imagine your app is like a house with different rooms. Some rooms are open to everyone (like the living room), while others are private (like the study). To keep the private rooms safe, you need a reliable security system.
+Here's how we'll set it up:
+Building the Foundation:
+Create a special folder called "layouts" in your frontend root directory. This is like laying the groundwork for your security system.
+Inside this folder, we'll place two essential files:
+MainWrapper.jsx: This is like a master blueprint that holds the entire house together. It's responsible for keeping track of who's currently in the house (the logged-in user).
+PrivateRoute.jsx: This acts as a diligent security guard, stationed at the entrance of every private room. It checks if a visitor has permission to enter (if they're logged in).
+
+Setting Up the Security Guard:
+The PrivateRoute component does a crucial job:
+It examines each visitor's credentials (checks if they're logged in).
+If the visitor is authorized, it grants them access to the private room they want to visit.
+If not, it politely but firmly redirects them to the login page, where they can get the necessary permissions.
+
+
+
+
+Putting It All Together:
+Once we have this security system in place, we can start building the different rooms (pages) of our house (app).
+For each private room, we'll use the PrivateRoute component as its doorway, ensuring that only authorized visitors can enter.
+Making It Work:
+The MainWrapper component, acting as the house's supervisor, will communicate with the PrivateRoute guards to ensure they have the correct information about who's currently in the house (the logged-in user). This way, the guards can make accurate decisions about who to let in.
+With this setup, we'll have a well-protected house where only authorized visitors can access the private rooms, keeping our sensitive information safe and sound!
+
+
+Our Application Authentication will have 5 routes
+Login
+Register
+Logout
+Forgot Password
+Create Password
+
+
+
+
+Configure Template In React
+Add Bootstrap CDN to index page
+Create Header and Footer
+Imort the Home page
+Override the register, login and logout page
+
+Create Models In Django
+Create Store, CartOrder, CartOrderItems, Wishlist and Other required 
+Register Models In Admin
+Test In Model
+
+Serializers Models In Django
+Create a new serializer.py in the api app
+Serilaize the models in the new file
+
+Course List, Detail and Category List API View
+Create a new view to list category, course list and detail page
+Register In Routes
+Fetch In react and display items
+
+Fetch Courses from backend for Index.js - (Client)
+Fetch and list courses in Index.jsx
+Configure index.jsx and test
+
+Fetch Courses from backend for CourseDetail.js - (Client)
+Fetch and show course detail in CourseDetail.jsx
+
+Cart Create API View
+Create a new view to get and destructure data from payload
+Create a new cart instance or update cart
+
+Cart List API View
+Create a new view to list cart items
+Configure Routes and Test
+
+Cart Stats API View
+Create a new view to list cart stats like total price, tax, price e.t.c
+Configure Routes and Test
+
+Cart Item Delete API View
+Create a new view to delete item from cart based on item and cart id
+Configure Routes and Test
+
+Add To Cart - CourseDetail.jsx (Client)
+Consume the cart create API View to add or update cart
+Test if new cart items are being created in the database.
+
+Add To Cart - Index.jsx (Client)
+Consume the cart create API View to add or update cart but from the Index.jsx courses list
+Test if new cart items are being created in the database when adding to cart from the index.html
+
+Cart Item Count - CartContext (Client)
+Create new context.jsx file and instantiate a new CartContext function
+Fetch the cart items and it’s length in the App.jsx and set the length to a state
+Wrap the entire application with the Cart Context and set the cart length in the CartContext.Provider value={} attribute
+Use the useContext hook to get the CartContext and it’s value in the Baseheader.jsx
+Display the total amount of cart items in the header cart icon section
+Set the new cart length when adding to cart from the index.jsx and coursedetail.jsx
+
+Cart List Page (Client)
+Consume the cart list api view to list items in the Cart database onto the cart.jsx page
+List stats and also configure the templates to contain personal informations
+
+
+Cart Delete Item (Client)
+Using the Cart Delete Item APi View destroy item from cart when a user clicks on the trash  button
+Update the cart to show the latest items, set the updated cartcount to the context
+
+Cart Personal Information (Client)
+Configure the cart page to get a save user personal detail to the states
+Write function to handle changing of input
+
+Create New Cart Order (Client)
+Using all the informations gathered on the cart page, create a new cart order
+Create a new formdata and send the database to the api in a payload
+
+Checkout View (API)
+Write a view to fetch a checkout order instance using order Id
+
+Checkout Component (Client)
+In the checkout.jsx, fetch the  checkout order item via the checkout api
+
+Apply Coupon (API)
+Write a view to apply a new coupon code
+Apply Coupon (Client )
+Consume the apply coupon api to apply a new coupon from the frontend
+
+Stripe Checkout  View - API
+Create the stripe checkout view to initiate a new payment instance using stripe
+
+Get paypal access token - API
+Using the paypal access token api endpoint, get a new paypal endpoint
+
+Payment Success Processing - API
+Confirm payment by making api calls to the payment gateway verification website to check if the the payment went through
+If the payment went through make the order a paid and enroll a student in the new course
+
+Notification System - API
+Create a notification object for the teacher and the student (if need be for student notification)
+
+
+
+Paypal Payment using React.js (Client)
+Create a new paypal payment feature using react.js
+
+Stripe Payment using React.js (Client)
+Make an api call to the stripe endpoint to create a stripe payment
+
+Payment Success Page (Client)
+Based on the response returned from the PaymentSuccesAPIView, render the payment success page.
+
+Search Product API (Client)
+Create a new api to search courses.
+
+Search Course using React.js (Client)
+Create a new api to search courses.
+
+
+
+
+
+STUDENT SECTION API AND CLIENT
+Student Stats
+Create a new api to search courses.
+
+Student Course List API View
+Create a new api to search courses.
+
+Student Course Detail API View
+Create a new api to search courses.
+
+Student Mark Course As Completed View
+Create a new api to search courses.
+
+We’re still adding more steps, thanks for your patience…
+
+https://docs.google.com/document/d/1KjnO2K-Zz0LxsGL9RKyOY4PRXuBrHyhNPXJPCPKEsIA/edit
